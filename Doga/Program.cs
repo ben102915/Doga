@@ -21,7 +21,7 @@ namespace Doga
                 bool vanE = false;
                 do
                 {
-                     vanE = false;
+                    vanE = false;
                     szam = random.Next(min, max);
                     foreach (var item in szamok)
                     {
@@ -48,21 +48,41 @@ namespace Doga
 
         static int[] LeghosszabbNovekvo()
         {
-            foreach (var item in szamok)
+            int legjobbKezdet = 0;
+            int legjobbHossz = 1;
+            int kezdet = 0;
+            int hossz = 1;
+            for (int i = 1; i < szamok.Length; i++)
             {
-                int novekszikE = 0;
-
-                for (int i = 0; i < szamok.Length - 1; i++)
+                if (szamok[i] > szamok[i - 1])
                 {
-                    if (szamok[i] < szamok[i + 1])
-                    {
-                        novekszikE++;
-                    }
+                    hossz++;
                 }
-                
+                else
+                {
+                    kezdet = i;
+                    hossz = 1;
+                }
+                if (hossz > legjobbHossz)
+                {
+                    legjobbHossz = hossz;
+                    legjobbKezdet = kezdet;
+                }
             }
-            return szamok;
+            int[] eredmeny = new int[legjobbHossz];
+            for (int i = 0; i < legjobbHossz; i++)
+            {
+                eredmeny[i] = szamok[legjobbKezdet + i];
+            }
+            return eredmeny;
         }
+
+
+        static void AtlagAlattiDuplazas()
+        {
+
+        }
+
         static void HutoElemekFeltoltese()
         {
             huto_elemek[0] = "tej";
@@ -183,7 +203,12 @@ namespace Doga
             //Maganhangzo();
 
             FeltoltEgyediekkel(1, 11);
-
+            int[] szamsorozat = LeghosszabbNovekvo();
+            foreach (var item in szamsorozat)
+            {
+                Console.WriteLine($"A szamszorozat: {item}");
+            }
+            LeghosszabbNovekvo();
 
 
         }
