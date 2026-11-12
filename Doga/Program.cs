@@ -9,24 +9,25 @@ namespace Doga
         static int[] szamok = new int[10];
 
 
+
         static void FeltoltEgyediekkel(int min, int max)
         {
 
-            
+
 
             for (int i = 0; i < szamok.Length; i++)
             {
                 szamok[i] = random.Next(min, max);
-                
-                
+
+
             }
-            
+
             foreach (var item in szamok)
             {
                 Console.WriteLine(item + " ");
             }
 
-            
+
         }
 
 
@@ -40,7 +41,7 @@ namespace Doga
             huto_elemek[5] = "kolbász";
             huto_elemek[6] = "tojás";
             huto_elemek[7] = "zöldség";
-            huto_elemek[8] = "gyümölcs";
+            huto_elemek[8] = "alma";
             huto_elemek[9] = "";
         }
 
@@ -78,7 +79,7 @@ namespace Doga
 
 
 
-            
+
 
 
             //foreach (var item in huto_elemek)
@@ -93,8 +94,8 @@ namespace Doga
 
         static int KeresEtel(string etelNeve)
         {
-            
-            
+
+
 
 
             foreach (var item in huto_elemek)
@@ -103,23 +104,54 @@ namespace Doga
                 if (item == etelNeve)
                 {
                     Console.WriteLine($"Van {etelNeve} a hutoben");
-                    return index;
+                    return index + 1;
                 }
-                
+
             }
             return 0;
         }
 
+        static void Maganhangzo()
+        {
+            string maganhangzok = "aáeéiíoóöőuúüű";
+
+            for (int i = 0; i < huto_elemek.Length; i++)
+            {
+                if (huto_elemek[i] != "")
+                {
+
+
+                    if (maganhangzok.Contains(huto_elemek[i][0]))
+                    {
+                        Console.WriteLine($"A {huto_elemek[i]} magánhangzoval kezdodik");
+
+                    }
+
+                }
+            }
+        }
         static void Main(string[] args)
         {
-         
+
             HutoElemekFeltoltese();
             int darab = Takarit();
             //FeltoltEgyediekkel(1,10);
             Console.WriteLine($" A hutoben {darab} elem van");
-            
-            int index = KeresEtel("sajt");
-            Console.WriteLine($"A keresett etel a {index} indexen van");
+
+            int index = KeresEtel("tej");
+            if (index != 0)
+            {
+                Console.WriteLine($"A keresett etel a(z) {index} elso elem");
+
+            }
+            else
+            {
+                Console.WriteLine("A keresett etel nincs a hutoben");
+            }
+            Maganhangzo();
+
+
+
 
 
         }
