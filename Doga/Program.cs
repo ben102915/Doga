@@ -17,9 +17,23 @@ namespace Doga
 
             for (int i = 0; i < szamok.Length; i++)
             {
-                szamok[i] = random.Next(min, max);
+                int szam;
+                bool vanE = false;
+                do
+                {
+                     vanE = false;
+                    szam = random.Next(min, max);
+                    foreach (var item in szamok)
+                    {
+                        if (szam == item)
+                        {
+                            vanE = true;
+                        }
+                    }
+                }
+                while (vanE);
 
-
+                szamok[i] = szam;
             }
 
             foreach (var item in szamok)
@@ -28,9 +42,27 @@ namespace Doga
             }
 
 
+
+
         }
 
+        static int[] LeghosszabbNovekvo()
+        {
+            foreach (var item in szamok)
+            {
+                int novekszikE = 0;
 
+                for (int i = 0; i < szamok.Length - 1; i++)
+                {
+                    if (szamok[i] < szamok[i + 1])
+                    {
+                        novekszikE++;
+                    }
+                }
+                
+            }
+            return szamok;
+        }
         static void HutoElemekFeltoltese()
         {
             huto_elemek[0] = "tej";
@@ -133,24 +165,24 @@ namespace Doga
         static void Main(string[] args)
         {
 
-            HutoElemekFeltoltese();
-            int darab = Takarit();
-            //FeltoltEgyediekkel(1,10);
-            Console.WriteLine($" A hutoben {darab} elem van");
+            //HutoElemekFeltoltese();
+            //int darab = Takarit();
+            ////FeltoltEgyediekkel(1,10);
+            //Console.WriteLine($" A hutoben {darab} elem van");
 
-            int index = KeresEtel("tej");
-            if (index != 0)
-            {
-                Console.WriteLine($"A keresett etel a(z) {index} elso elem");
+            //int index = KeresEtel("tej");
+            //if (index != 0)
+            //{
+            //    Console.WriteLine($"A keresett etel a(z) {index} elso elem");
 
-            }
-            else
-            {
-                Console.WriteLine("A keresett etel nincs a hutoben");
-            }
-            Maganhangzo();
+            //}
+            //else
+            //{
+            //    Console.WriteLine("A keresett etel nincs a hutoben");
+            //}
+            //Maganhangzo();
 
-
+            FeltoltEgyediekkel(1, 11);
 
 
 
