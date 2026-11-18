@@ -80,7 +80,21 @@ namespace Doga
 
         static void AtlagAlattiDuplazas()
         {
+            double osszeg = 0;
+            for (int i = 0; i < szamok.Length; i++)
+            {
+                osszeg += szamok[i];
+            }
+            double atlag = osszeg / szamok.Length;
 
+            for (int i = 0; i < szamok.Length; i++)
+            {
+                if (szamok[i] < atlag)
+                {
+                    szamok[i] *= 2;
+                }
+            }
+            Console.WriteLine($"Az atlag: {atlag}");
         }
 
         static void HutoElemekFeltoltese()
@@ -210,6 +224,12 @@ namespace Doga
             }
             LeghosszabbNovekvo();
 
+            AtlagAlattiDuplazas();
+            Console.WriteLine("Duplazas utan:");
+            foreach (var item in szamok)
+            {
+                Console.WriteLine(item + " ");
+            }
 
         }
     }
